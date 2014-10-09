@@ -21,11 +21,11 @@ router.get('/', function(req, res) {
 function kaydet()
 {
 
-
-
-
     var data = { ad: 'tr' };
     mongoose_crud.insert_data('demo',data);
+
+
+
     /*
     * var urun = mongoose.model('dil');
      var dog = new urun({ ad: 'tr' });
