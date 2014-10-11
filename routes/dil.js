@@ -5,29 +5,49 @@ var yardimci = require('../util/yardimci.js');
 var mongoose_crud = require('../util/mongoose_crud.js');
 
 
-
 /* GET users listing. */
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
 
-    mongoose.model("dil").find(function(err,users)
-    {
+    mongoose.model("dil").find(function (err, users) {
 
-        kaydet();
+        createData();
+        console.log("*****");
         res.send(users);
     });
 
 });
 
-function kaydet()
-{
+function createData() {
+
+    var Console = mongoose.model('uye_rss_kategorileri');
+    var Game = mongoose.model('uye_rss_listesi');
+
+
+    Console.create({
+        name: 'Nintendo 64', manufacturer: 'Nintendo', released: 'September 29, 1996'
+    }, function (err, nintendo64) {
+        if (err) return done(err);
+
+
+        Game.create({
+            name: 'Legend of Zelda: Ocarina of Time', developer: 'Nintendo', released: new Date('November 21, 1998'), consoles: '54387eec3b03b9cb128e478a'
+        }, function (err) {
+            //if (err) return done(err);
+            //example();
+        })
+    })
+
+}
+
+
+function kaydet() {
 
     var data = { ad: 'tr' };
-    mongoose_crud.insert_data('demo',data);
-
+    mongoose_crud.insert_data('demo', data);
 
 
     /*
-    * var urun = mongoose.model('dil');
+     * var urun = mongoose.model('dil');
      var dog = new urun({ ad: 'tr' });
      dog.save(function(err) {
      // we've saved the dog into the db here
