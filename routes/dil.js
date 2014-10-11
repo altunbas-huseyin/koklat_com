@@ -8,10 +8,12 @@ var mongoose_crud = require('../util/mongoose_crud.js');
 /* GET users listing. */
 router.get('/', function (req, res) {
 
-    mongoose.model("dil").find(function (err, users) {
 
-        createData();
-        console.log("*****");
+    mongoose.model("uye_rss_kategorileri").find(function (err, users) {
+
+        //createData();
+
+
         res.send(users);
     });
 
@@ -42,8 +44,9 @@ function createData() {
 
 function kaydet() {
 
-    var data = { ad: 'tr' };
-    mongoose_crud.insert_data('demo', data);
+    var myid = mongoose_crud.createObjectId();
+    var data = {   _id:myid,name: 'Nintendo 64', manufacturer: 'Nintendo', released: 'September 29, 1996' };
+    mongoose_crud.insertData('uye_rss_kategorileri', data);
 
 
     /*

@@ -1,21 +1,27 @@
 var mongoose = require('mongoose');
 
-function insert_data(model, data) {
+function insertData(model, data) {
 
-    console.log(data);
     var _model = mongoose.model(model);
     var data_model = new _model(data);
-    data_model.save(function (err)
+    data_model.save(function (err, insert_data)
     {
         // we've saved the dog into the db here
-        if (err) throw err;
+        if (err) {throw err}
 
     });
 
 
 }
+module.exports.insertData = insertData;
 
-module.exports.insert_data = insert_data;
+
+function createObjectId() {
+    var ObjectID = require('mongodb').ObjectID;
+    var objectId = new ObjectID();
+    return objectId;
+}
+module.exports.createObjectId = createObjectId;
 
 
 
